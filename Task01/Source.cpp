@@ -1,10 +1,18 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "Flower.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({ 200, 200 }), "SFML works!");
+   
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
+    sf::ContextSettings settings;
+ 
+    sf::RenderWindow window(sf::VideoMode({ 500, 500 }), "SFML flower", sf::Style::Default, sf::State::Windowed, settings);
+
+    Flower flower(&window);
+
 
     while (window.isOpen())
     {
@@ -13,6 +21,7 @@ int main()
             if (event->is<sf::Event::Closed>())
                 window.close();
         }
+        flower.draw();
 
         window.clear();
         window.draw(shape);
